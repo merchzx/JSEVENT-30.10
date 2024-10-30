@@ -1,0 +1,116 @@
+<!DOCTYPE html
+	PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Untitled Document</title>
+	<style>
+		img {
+			border: 3px solid #ccc;
+			margin: 10px;
+			cursor: pointer;
+		}
+
+		.button {
+			border: none;
+		}
+
+		#nextPng {
+			width: 200px;
+			margin-bottom: 50px;
+		}
+		button:nth-child(1){
+			margin-top: 50px;
+			margin-left: 1500px;
+		}
+	</style>
+</head>
+
+<body>
+
+	<button onclick="darkk()">Dark Mode</button>
+	<button onclick="lightt()">Light Mode</button>
+	<div style="text-align:center; padding-top:30px;">
+		<img src="images/back.jpg" class="button" onclick="changeTumbs(false)" />
+		<img src="images/i1.jpg" name="1" onclick="openImage(this)" />
+		<img src="images/i2.jpg" name="2" onclick="openImage(this)" />
+		<img src="images/i3.jpg" name="3" onclick="openImage(this)" />
+		<img src="images/next.jpg" class="button" onclick="changeTumbs(true)" />
+	</div>
+
+	<div style="text-align:center;">
+		<img id="nextPng" src="images/back2.jpg" class="button" onclick="changePicture(false)" />
+		<img style="cursor:default;" src="images/i1_big.jpg" name="big" title="Фантастические фрукты" />
+		<img id="nextPng" src="images/next2.jpg" class="button" onclick="changePicture(true)" />
+	</div>
+
+
+	<script>
+
+		function openImage(pic) {
+			document.images["big"].src = "images/i" + pic.name + "_big.jpg"
+
+		}
+		function changeTumbs(flag) {
+			if (flag) {
+				if (document.images[3].name == 9) {
+					for (var i = 1; i <= 3; i++) {
+						document.images[i].name = i;
+						document.images[i].src = "images/i" + i + ".jpg";
+					}
+				}
+				else {
+					for (var i = 1; i <= 3; i++) {
+						document.images[i].name = parseInt(document.images[i].name) + 3;
+						document.images[i].src = "images/i" + document.images[i].name + ".jpg";
+					}
+				}
+			}
+			else {
+				if (document.images[1].name == 1) {
+					for (var i = 1; i <= 3; i++) {
+						document.images[i].name = i + 6;
+						document.images[i].src = "images/i" + (i + 6) + ".jpg";
+					}
+				}
+				else {
+					for (var i = 1; i <= 3; i++) {
+						document.images[i].name = parseInt(document.images[i].name) - 3;
+						document.images[i].src = "images/i" + document.images[i].name + ".jpg";
+					}
+				}
+			}
+		}
+		var i = 1;
+		function changePicture(flag) {			
+			if (flag) {
+				i++;
+				if (i > 9) {
+					i=1;
+				}
+			}
+			else {
+				i--;
+				if(i<1) {
+					i = 9;
+				}
+			}
+			document.images["big"].src = "images/i"+i+"_big.jpg";
+		}
+
+		let dark = document.querySelectorAll("button")[0];
+
+		let light = document.querySelectorAll("button")[1];
+
+		function darkk() {
+			document.body.style.background = "black"
+		}
+		function lightt() {
+			document.body.style.background = ""
+		}
+	</script>
+
+</body>
+
+</html>
